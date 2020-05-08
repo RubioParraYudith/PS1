@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Musica.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4 class="text-center ">Lista de Canciones</h4>
+
+<p>
+    @Html.ActionLink("Nuevo Usuario", "Create", new { }, new { @class = "btn btn-primary btn-sm " })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre Completo
+        </th>
+        <th>
+            Correo Electrónico
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            Inicio Suscripción
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartSuscription)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","Tasks",new {id=item.Id })"> <i class="glyphicon glyphicon-pencil text-warning"></i></a> |
+                <a href="@Url.Action("Details","Tasks",new {id=item.Id })" class="text-info"><i class="glyphicon glyphicon-eye-open"></i></a> |
+                <a href="@Url.Action("Delete","Tasks",new {id=item.Id })" class="text-danger"> <i class="glyphicon glyphicon-trash"></i></a>
+
+            </td>
+        </tr>
+    }
+
+</table>

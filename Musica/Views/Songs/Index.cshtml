@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Musica.Models.Song>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h4 class="text-center">Lista de Canciones</h4>
+
+
+<p>
+    @Html.ActionLink("Nueva Canción", "Create", new { }, new { @class = "btn btn-primary btn-sm " })
+</p>
+<table class="table table-hover table-condensed">
+    <tr>
+        <th>
+           Usuario
+        </th>
+        <th>
+            Titulo de la canción
+        </th>
+        <th>
+            Duración
+        </th>
+        <th>
+           Genero
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>
